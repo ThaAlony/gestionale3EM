@@ -1,8 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +12,16 @@ import model.Persona;
 import utils.PersonaDAO;
 
 /**
- * Servlet implementation class Lettura
+ * Servlet implementation class Modifica
  */
-@WebServlet("/Lettura")
-public class Lettura extends HttpServlet {
+@WebServlet("/Modifica")
+public class Modifica extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Lettura() {
+    public Modifica() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,11 +31,7 @@ public class Lettura extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		List<Persona> ls = PersonaDAO.getUtenti();
-		request.setAttribute("ls", ls);
-		System.out.print("2222");
-		request.getRequestDispatcher("select.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -45,7 +39,15 @@ public class Lettura extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		Persona p = new Persona();
+		p.setId(Integer.valueOf(request.getParameter("id")));
+		p.setCognome(request.getParameter("cognome"));
+		p.setNome(request.getParameter("nome"));
+		p.setEta(Integer.valueOf(request.getParameter("eta")));
+		
+		PersonaDAO.modifica(p);
+		response.sendRedirect("Lettura"); 
 	}
 
 }

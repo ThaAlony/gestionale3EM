@@ -7,6 +7,7 @@ public class Persona {
 	private String nome;
 	private String cognome;
 	private int eta;
+	private int id;
 	
 	public Persona(String nome, String cognome, int eta) {
 		super();
@@ -16,6 +17,16 @@ public class Persona {
 	}
 	
 	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	public Persona() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -42,13 +53,15 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona [nome=" + nome + ", conome=" + cognome + ", eta=" + eta + "]";
+		return "Persona [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", eta=" + eta + "]";
 	}
+
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cognome, eta, nome);
+		return Objects.hash(cognome, eta, id, nome);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -59,8 +72,10 @@ public class Persona {
 		if (getClass() != obj.getClass())
 			return false;
 		Persona other = (Persona) obj;
-		return Objects.equals(cognome, other.cognome) && eta == other.eta && Objects.equals(nome, other.nome);
+		return Objects.equals(cognome, other.cognome) && eta == other.eta && id == other.id
+				&& Objects.equals(nome, other.nome);
 	}
+
 	
 	
 }

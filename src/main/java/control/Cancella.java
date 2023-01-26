@@ -1,29 +1,25 @@
 package control;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Persona;
 import utils.PersonaDAO;
 
 /**
- * Servlet implementation class Lettura
+ * Servlet implementation class Cancella
  */
-@WebServlet("/Lettura")
-public class Lettura extends HttpServlet {
+@WebServlet("/Cancella")
+public class Cancella extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Lettura() {
+    public Cancella() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,11 +29,7 @@ public class Lettura extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		List<Persona> ls = PersonaDAO.getUtenti();
-		request.setAttribute("ls", ls);
-		System.out.print("2222");
-		request.getRequestDispatcher("select.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -45,7 +37,12 @@ public class Lettura extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		System.out.print("yo");
+		PersonaDAO.cancella(Integer.valueOf(request.getParameter("id")));
 		doGet(request, response);
+		
+		response.sendRedirect("Lettura"); 
 	}
 
 }

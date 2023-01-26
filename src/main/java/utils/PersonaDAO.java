@@ -38,7 +38,11 @@ public class PersonaDAO {
 		try {
 			ResultSet rs =  conn.createStatement().executeQuery("SELECT * FROM `persona` WHERE 1");
 			while(rs.next()) {
-				Persona p = new Persona(rs.getString("nome"), rs.getString("cognome"), rs.getInt("eta"));
+				Persona p = new Persona();
+				p.setId(rs.getInt("id"));
+				p.setNome(rs.getString("nome"));
+				p.setCognome(rs.getString("cognome"));
+				p.setEta(rs.getInt("eta"));
 				ls.add(p);
 			}
 		} catch (SQLException e) {
@@ -46,12 +50,46 @@ public class PersonaDAO {
 			e.printStackTrace();
 		}
 		
-		
+		System.out.print("111");
 		return ls;
 	}
 	
 	
-	public static void cancella() {
+	public static void cancella(int ID) {
+		Connection conn = Connessione.getConnessione();
 		
+		try {
+			PreparedStatement sql = conn.prepareStatement("DELETE FROM `persona` WHERE id=?");
+			sql.setInt(1, ID);
+		
+			System.out.print("yoo");
+			sql.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+	}
+	
+	
+	public static void modifica(Persona p) {
+		Connection conn = Connessione.getConnessione();
+		try {
+			PreparedStatement sql = conn.prepareStatement("UPDATE `persona` SET	nome=?,cognome=?,eta=? WHERE id=?");
+			sql.setString(1, p.getNome());
+			sql.setString(2, p.getCognome());
+			sql.setInt(3, p.getEta());
+			sql.setInt(4, p.getId());
+		
+			System.out.print("yoo");
+			sql.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

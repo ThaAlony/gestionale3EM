@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<h1>YO YO YO QUESTA E' LAPPLICAZIONE PIU PAZZA DI TUTTE</h1>
 <a href="insert.jsp">Registrazione</a>
 <a href="Lettura">Visualizza utenti</a>
 
