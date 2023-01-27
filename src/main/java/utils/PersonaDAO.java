@@ -77,11 +77,12 @@ public class PersonaDAO {
 	public static void modifica(Persona p) {
 		Connection conn = Connessione.getConnessione();
 		try {
-			PreparedStatement sql = conn.prepareStatement("UPDATE `persona` SET	nome=?,cognome=?,eta=? WHERE id=?");
+			PreparedStatement sql = conn.prepareStatement("UPDATE `persona` SET	nome=?,cognome=?,eta=?,id=? WHERE id=?");
 			sql.setString(1, p.getNome());
 			sql.setString(2, p.getCognome());
 			sql.setInt(3, p.getEta());
 			sql.setInt(4, p.getId());
+			sql.setInt(5, p.getId());
 		
 			System.out.print("yoo");
 			sql.executeUpdate();

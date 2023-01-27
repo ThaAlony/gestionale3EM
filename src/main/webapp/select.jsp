@@ -31,13 +31,19 @@
       <input type="hidden" name="id" value="${ls.id}">
        <button class="btn btn-primary">Cancella</button>
        </form>
-      <form action="update.jsp" method="POST">
+       
+       <a href="CaricaModifica?id=${ls.id}&nome=${ls.nome}&cognome=${ls.cognome}&eta=${ls.eta}"> <button class="btn btn-primary">Modifica</button> </a>
+       
+       <!--   
+       <form action="update.jsp" method="POST">
       <input type="hidden" name="id" value="${ls.id}">
       <input type="hidden" name="nome" value="${ls.nome}">
       <input type="hidden" name="cognome" value="${ls.cognome}">
       <input type="hidden" name="eta" value="${ls.eta}">
        <button class="btn btn-primary">Update</button>
        </form>
+       -->
+      
       </th>
       
           </tr>
